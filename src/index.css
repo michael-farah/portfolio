@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply selection:bg-indigo-400/30 selection:text-white;
+  }
+
+  html {
+    @apply scroll-smooth;
+    scroll-behavior: smooth;
+  }
+
+  body {
+  @apply font-sans text-slate-200 overflow-x-hidden;
+  }
+
+  ::selection {
+  @apply bg-indigo-400/20;
+  }
+}
+
+@layer components {
+  /* ─── Glass Card ─── */
+  .glass-card {
+    @apply relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-sm transition-all duration-500 ease-out;
+  }
+
+  .glass-card:hover {
+    @apply border-indigo-500/30 shadow-xl shadow-indigo-500/10 -translate-y-1;
+  }
+
+  /* ─── Card ─── */
+  .card {
+    @apply glass-card flex flex-col items-stretch;
+  }
+
+  .card-footer {
+    @apply bg-gradient-to-r from-indigo-600 to-purple-700 p-5 flex flex-col sm:flex-row items-center sm:justify-between gap-4 sm:gap-0 rounded-b-2xl;
+  }
+
+  .link-button {
+    @apply text-white/90 hover:text-white hover:scale-105 active:scale-95 transition-all duration-200 flex items-center font-medium;
+  }
+
+  /* ─── Tech Badge ─── */
+  .tech-badge {
+    @apply px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-indigo-300 bg-indigo-500/15 border border-indigo-500/20 rounded-full transition-all duration-300 hover:bg-indigo-500/25 hover:scale-105;
+  }
+
+  /* ─── Navigation ─── */
+  .navigation-link {
+    @apply relative flex items-center text-lg font-medium space-x-3 text-slate-400 hover:text-indigo-400 transition-all duration-300;
+  }
+
+  .navigation-link.active {
+    @apply text-indigo-400;
+  }
+
+  .nav-indicator {
+    @apply absolute -left-4 w-1 h-0 rounded-full bg-indigo-400 transition-all duration-300;
+  }
+
+  .navigation-link.active .nav-indicator,
+  .navigation-link:hover .nav-indicator {
+    @apply h-full;
+  }
+
+
+  /* ─── Footer Link ─── */
+  .footer-link {
+    @apply inline-flex items-center space-x-2 text-slate-400 hover:text-indigo-400 transition-all duration-300 hover:scale-110 active:scale-95;
+  }
+
+  /* ─── Section Title ─── */
+  .section-title {
+    @apply text-4xl sm:text-5xl font-black bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent mb-10;
+  }
+
+  /* ─── Glow effects ─── */
+  .glow-indigo {
+    @apply relative;
+  }
+
+  .glow-indigo::before {
+    content: '';
+    @apply absolute -inset-1 rounded-2xl bg-gradient-to-r from-indigo-500/20 to-purple-500/20 blur-xl opacity-0 transition-opacity duration-500;
+  }
+
+  .glow-indigo:hover::before {
+    @apply opacity-100;
+  }
+
+  /* ─── Scrollbar ─── */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-700 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-600;
+  }
+
+  /* ─── Skeleton Loading ─── */
+  .skeleton {
+    @apply animate-pulse bg-slate-700 rounded-lg;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
