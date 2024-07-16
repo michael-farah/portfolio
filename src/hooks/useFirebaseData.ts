@@ -1,0 +1,56 @@
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { get } from "firebase/database";
+import type { DataSnapshot } from "firebase/database";
+import { database, firebaseRef } from "../firebase";
+import type { FirebaseData } from "../types";
+
+export const useFirebaseDataFetch = () => {
+  const [data, setData] = useState<FirebaseData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+
+  const fetchData = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const [projectsSnapshot, timelineSnapshot, aboutSnapshot]: [
+        DataSnapshot,
+        DataSnapshot,
+        DataSnapshot,
+      ] = await Promise.all([
+        get(firebaseRef(database, "projects")),
+        get(firebaseRef(database, "timeline")),
+        get(firebaseRef(database, "about")),
+      ]);
+
+      if (
+        !projectsSnapshot.exists() &&
+        !timelineSnapshot.exists() &&
+        !aboutSnapshot.exists()
+      ) {
+        throw new Error("No data available in the database");
+      }
+
+      setData({
+        projects: projectsSnapshot.val() || [],
+        timeline: timelineSnapshot.val() || [],
+        about: aboutSnapshot.val() || "",
+      });
+    } catch (err) {
+      setError(
+        new Error(err instanceof Error ? err.message : "Failed to fetch data"),
+      );
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  return useMemo(
+    () => ({ data, loading, error, refetch: fetchData }),
+    [data, loading, error, fetchData],
+  );
+};
