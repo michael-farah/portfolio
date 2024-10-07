@@ -5,6 +5,12 @@
     <link rel="icon" type="image/svg+xml" href="/mf.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio - Michael Farah</title>
+    <script>
+      document.documentElement.classList.toggle(
+        "dark",
+        localStorage.theme === "dark" || !("theme" in localStorage),
+      );
+    </script>
   </head>
   <body>
     <div id="root"></div>

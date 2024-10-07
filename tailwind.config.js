@@ -7,6 +7,7 @@ export default {
     "./src/components/*.{ts,tsx}",
     "./src/sections/*.{ts,tsx}",
   ],
+  darkMode: "selector",
   theme: {
     extend: {},
   },
