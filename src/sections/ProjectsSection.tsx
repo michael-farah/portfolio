@@ -6,7 +6,7 @@ const ProjectsSection: React.FC = () => {
   const { data, loading, error } = useFirebaseData();
 
   return (
-    <section id="projects" className="flex flex-col items-center">
+    <section id="projects" className="flex flex-col">
       <h2 className="text-5xl font-bold mb-8">Projects</h2>
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}

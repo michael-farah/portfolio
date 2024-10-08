@@ -7,7 +7,7 @@ const ExperienceSection: React.FC = () => {
 
   return (
     <section id="experience" className="py-16">
-      <h2 className="mb-16 text-center text-5xl font-bold">Experience</h2>
+      <h2 className="mb-16 text-5xl font-bold">Experience</h2>
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
 
