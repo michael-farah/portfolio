@@ -11,19 +11,28 @@ export const useFirebaseData = () => {
 
   const fetchData = useCallback(async () => {
     try {
-      const [projectsSnapshot, timelineSnapshot]: [DataSnapshot, DataSnapshot] =
-        await Promise.all([
-          get(firebaseRef(database, "projects")),
-          get(firebaseRef(database, "timeline")),
-        ]);
+      const [projectsSnapshot, timelineSnapshot, aboutSnapshot]: [
+        DataSnapshot,
+        DataSnapshot,
+        DataSnapshot,
+      ] = await Promise.all([
+        get(firebaseRef(database, "projects")),
+        get(firebaseRef(database, "timeline")),
+        get(firebaseRef(database, "about")),
+      ]);
 
-      if (!projectsSnapshot.exists() && !timelineSnapshot.exists()) {
+      if (
+        !projectsSnapshot.exists() &&
+        !timelineSnapshot.exists() &&
+        !aboutSnapshot.exists()
+      ) {
         throw new Error("No data available in the database");
       }
 
       setData({
         projects: projectsSnapshot.val() || [],
         timeline: timelineSnapshot.val() || [],
+        about: aboutSnapshot.val() || "",
       });
     } catch (err) {
       setError(

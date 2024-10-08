@@ -13,6 +13,7 @@ export interface TimelineItem {
 }
 
 export interface FirebaseData {
+  about: string;
   projects: Project[];
   timeline: TimelineItem[];
 }
