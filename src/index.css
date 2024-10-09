@@ -37,4 +37,12 @@
   .navigation-link {
     @apply flex items-center text-xl space-x-3 hover:text-blue-600 hover:scale-105 dark:hover:text-blue-400 transition-colors;
   }
+
+  .theme-toggle {
+    @apply fixed top-4 right-4 z-50 rounded-full bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-800 p-2
+    transition-all duration-300 ease-in-out
+    hover:ring-2 hover:ring-offset-2 hover:ring-offset-gray-400
+    hover:opacity-100 opacity-40
+    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-400;
+  }
 }

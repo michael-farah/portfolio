@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import SvgIcon from "./SvgIcon";
 
 const ThemeToggle: React.FC = () => {
   const [theme, setTheme] = useState<string | null>(
@@ -15,16 +16,18 @@ const ThemeToggle: React.FC = () => {
     localStorage.setItem("theme", newTheme);
   };
 
+  const buttonLabel = theme === "dark" ? "Switch to light theme" : "Switch to dark theme";
+  const iconName = theme === "dark" ? "sun" : "moon";
+
+
   return (
     <button
       onClick={toggleTheme}
-      className={`fixed top-4 right-4 z-50 rounded-full bg-gray-800 text-white p-2
-        transition-all duration-300 ease-in-out
-        hover:ring-2 hover:ring-offset-2 hover:ring-offset-gray-400
-        hover:opacity-100 opacity-40`}
-      aria-label={"Toggle theme"}
+      className="theme-toggle"
+      aria-label={buttonLabel}
+      title={buttonLabel}
     >
-      Toggle Theme
+      <SvgIcon name={iconName} title={buttonLabel} />
     </button>
   );
 };
