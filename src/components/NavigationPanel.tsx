@@ -1,4 +1,5 @@
 import React from "react";
+import SvgIcon from "./SvgIcon";
 
 const NavigationPanel: React.FC = () => {
   return (
@@ -14,28 +15,35 @@ const NavigationPanel: React.FC = () => {
           </header>
 
           <nav
-            className="hidden md:flex flex-grow flex-col justify-center px-8 md:px-16"
+            className="hidden md:flex flex-grow flex-col justify-center space-y-4 px-8 md:px-16"
             aria-label="Main navigation"
           >
-            <a href="#about">About</a>
-            <a href="#experience">Experience</a>
-            <a href="#projects">Projects</a>
+            <a href="#about" title="About section" className="navigation-link">
+              <SvgIcon name="user" />
+              <span>About</span>
+            </a>
+            <a href="#experience" title="Experience section" className="navigation-link">
+              <SvgIcon name="briefcase" />
+              <span>Experience</span>
+            </a>
+            <a href="#projects" title="Projects section" className="navigation-link">
+              <SvgIcon name="code" />
+              <span>Projects</span>
+            </a>
           </nav>
 
           <footer className="space-x-11 px-8 mb-6 md:px-16">
             <a
               href="https://github.com/michael-farah"
-              target="_blank"
-              rel="noreferrer"
+              className="inline-flex items-center space-x-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
-              Github
+              <SvgIcon name="github-outline" title="GitHub Profile" />
             </a>
             <a
               href="https://www.linkedin.com/in/michaelfarah-dev/"
-              target="_blank"
-              rel="noreferrer"
+              className="inline-flex items-center space-x-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
-              Linkedin
+              <SvgIcon name="linkedin" title="LinkedIn Profile" />
             </a>
           </footer>
         </div>
