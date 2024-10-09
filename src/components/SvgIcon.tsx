@@ -8,7 +8,7 @@ interface SvgIconProps {
 }
 
 const SvgIcon: React.FC<SvgIconProps> = ({ name, className = "", title, role = "img" }) => (
-  <svg className={`inline-block ${className}`} role={role} aria-hidden={!title} aria-label={title}>
+  <svg className={`inline-block w-7 h-7 ${className}`} role={role} aria-hidden={!title} aria-label={title}>
     {title && <title>{title}</title>}
     <use xlinkHref={`/sprite.svg#icon-${name}`} />
   </svg>
