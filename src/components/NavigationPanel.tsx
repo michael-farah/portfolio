@@ -48,21 +48,18 @@ const NavigationPanel: React.FC = () => {
           </nav>
 
           <footer className="space-x-11 px-8 mb-6 md:px-16">
-            <a
-              href="https://github.com/michael-farah"
-              className="inline-flex items-center space-x-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            >
+            <a href="https://github.com/michael-farah" className="footer-link">
               <SvgIcon name="github-outline" title="GitHub Profile" />
             </a>
             <a
               href="https://www.linkedin.com/in/michaelfarah-dev/"
-              className="inline-flex items-center space-x-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="footer-link"
             >
               <SvgIcon name="linkedin" title="LinkedIn Profile" />
             </a>
             <button
               onClick={toggleContactForm}
-              className="inline-flex items-center space-x-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="footer-link"
               title="Contact me"
             >
               <SvgIcon name="mail" />
