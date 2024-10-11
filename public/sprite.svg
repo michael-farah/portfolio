@@ -56,5 +56,17 @@
 			<path d="M4 12h16M4 6h16M4 18h16" fill="none" stroke="currentColor" stroke-linecap="round"
 				stroke-linejoin="round" stroke-width="2" />
 		</symbol>
+		<symbol id="icon-x" viewBox="0 0 24 24">
+			<path d="M6 18L18 6M6 6l12 12" fill="currentColour" stroke="currentColor" stroke-width="2"
+				stroke-linecap="round" stroke-linejoin="round" />
+		</symbol>
+		<symbol id="icon-google" viewBox="-3 0 262 262">
+			<path d="M256 133c0-10-1-18-3-26H131v48h71c-1 12-9 30-26 43v1l38 30h3c25-22 39-56 39-96" fill="#4285F4" />
+			<path
+				d="M131 261c35 0 64-12 86-32l-41-31c-11 7-26 13-45 13-35 0-64-23-75-55l-1 1-41 31v1c21 43 65 72 117 72"
+				fill="#34A853" />
+			<path d="M56 156a80 80 0 0 1 0-51v-2L15 71l-1 1a131 131 0 0 0 0 117l42-33" fill="#FBBC05" />
+			<path d="M131 50c24 0 41 11 50 20l37-36A130 130 0 0 0 14 72l42 33c11-32 40-55 75-55" fill="#EB4335" />
+		</symbol>
 	</defs>
 </svg>

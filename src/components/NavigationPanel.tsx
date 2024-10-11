@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import SvgIcon from "./SvgIcon";
+import ContactForm from "./ContactForm";
 
 const NavigationPanel: React.FC = () => {
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+
+  const toggleContactForm = () => {
+    setIsContactFormOpen(!isContactFormOpen);
+  };
+
   return (
     <>
       <div className="w-full md:h-screen md:sticky md:top-0 flex flex-col justify-between overflow-hidden dark:text-white">
@@ -22,11 +29,19 @@ const NavigationPanel: React.FC = () => {
               <SvgIcon name="user" />
               <span>About</span>
             </a>
-            <a href="#experience" title="Experience section" className="navigation-link">
+            <a
+              href="#experience"
+              title="Experience section"
+              className="navigation-link"
+            >
               <SvgIcon name="briefcase" />
               <span>Experience</span>
             </a>
-            <a href="#projects" title="Projects section" className="navigation-link">
+            <a
+              href="#projects"
+              title="Projects section"
+              className="navigation-link"
+            >
               <SvgIcon name="code" />
               <span>Projects</span>
             </a>
@@ -45,9 +60,18 @@ const NavigationPanel: React.FC = () => {
             >
               <SvgIcon name="linkedin" title="LinkedIn Profile" />
             </a>
+            <button
+              onClick={toggleContactForm}
+              className="inline-flex items-center space-x-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              title="Contact me"
+            >
+              <SvgIcon name="mail" />
+            </button>
           </footer>
         </div>
       </div>
+
+      <ContactForm isOpen={isContactFormOpen} onClose={toggleContactForm} />
     </>
   );
 };
