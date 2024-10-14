@@ -13,7 +13,7 @@ const ProjectsSection: React.FC = () => {
       {data && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {data?.projects.map((project, index) => (
-            <ProjectCard key={index} project={project} />
+            <ProjectCard key={index} project={project} index={index} />
           ))}
         </div>
       )}

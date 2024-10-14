@@ -4,14 +4,14 @@ import { type Project } from "../types";
 
 interface ProjectCardProps {
   project: Project;
-  key: number;
+  index: number;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project, key }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
   const { title, description, technologies, githubLink, demoLink } = project;
 
   return (
-    <div className="card" id={`project-card-${key}`}>
+    <div className="card" id={`project-card-${index}`}>
       <div className="flex-1 p-5">
         <h2 className="text-2xl font-bold mb-4">{title}</h2>
         <p className="mb-4">{description}</p>
