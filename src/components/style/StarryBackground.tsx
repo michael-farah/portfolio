@@ -5,11 +5,12 @@ const StarryBackground: React.FC<{
   starColour?: string;
   starCount?: number;
   maxOpacity?: number;
-}> = ({
-  starColour: starColour = `${useTheme().theme === "dark" ? "rgb(255,255,255)" : "rgb(255, 234, 0)"}`,
-  starCount = 1000,
-  maxOpacity = 1,
-}) => {
+}> = ({ starColour: initialStarColour, starCount = 1000, maxOpacity = 1 }) => {
+  const { theme } = useTheme();
+  const starColour =
+    initialStarColour ||
+    (theme === "dark" ? "rgb(255,255,255)" : "rgb(255, 234, 0)");
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const stars = useMemo(
@@ -24,7 +25,7 @@ const StarryBackground: React.FC<{
           sideSpeed: (Math.random() - 0.5) * 0.0002,
         };
       }),
-    [starCount],
+    [starCount]
   );
 
   const resizeCanvas = useCallback(() => {

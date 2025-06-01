@@ -27,8 +27,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
         <a
           href={githubLink}
           className="link-button"
-          aria-label={`View ${title} source code on GitHub`}
-        >
+          aria-label={`View ${title} source code on GitHub`}>
           <SvgIcon name="github-outline" className="w-5 h-5 mr-2" />
           <span>View on GitHub</span>
         </a>
@@ -36,8 +35,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
           <a
             href={demoLink}
             className="link-button"
-            aria-label={`View live demo of ${title}`}
-          >
+            aria-label={`View live demo of ${title}`}>
             <SvgIcon name="link-square" className="w-5 h-5 mr-2" />
             <span>Live Demo</span>
           </a>
@@ -47,4 +45,4 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
   );
 };
 
-export default ProjectCard;
+export default React.memo(ProjectCard);

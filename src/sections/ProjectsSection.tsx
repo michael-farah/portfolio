@@ -7,7 +7,7 @@ const ProjectsSection: React.FC = () => {
 
   return (
     <section id="projects" className="flex flex-col">
-      <h2 className="text-5xl font-bold mb-8">Projects</h2>
+      <h2 className="text-4xl sm:text-5xl font-bold mb-8">Projects</h2>
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
       {data && (

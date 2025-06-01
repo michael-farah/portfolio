@@ -14,7 +14,8 @@
     @apply bg-gradient-to-b from-blue-500 to-blue-600
       dark:bg-gradient-to-b dark:from-gray-700 dark:from-10% dark:to-gray-800
       p-5
-      flex items-center justify-between
+      flex flex-col sm:flex-row items-center sm:justify-between
+      gap-4 sm:gap-0
       rounded-b-lg;
   }
 

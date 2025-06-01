@@ -19,8 +19,8 @@ const NavigationPanel: React.FC = () => {
           </div>
           <div className="relative z-10 flex flex-col h-full">
             <header className="px-8 md:px-16">
-              <h1 className="text-5xl font-bold py-4 md:py-8">Michael Farah</h1>
-              <p className="text-2xl italic mb-6">
+              <h1 className="text-4xl sm:text-5xl font-bold py-4 md:py-8">Michael Farah</h1>
+              <p className="text-xl sm:text-2xl italic mb-6">
                 I create beautiful, performant, and user-friendly web
                 applications.
               </p>
@@ -54,23 +54,26 @@ const NavigationPanel: React.FC = () => {
                 <span>Projects</span>
               </a>
             </nav>
-            <footer className="space-x-11 px-8 mb-6 md:px-16">
+            <footer className="space-x-6 sm:space-x-8 md:space-x-11 px-8 mb-6 md:px-16">
               <a
                 href="https://github.com/michael-farah"
                 className="footer-link"
+                aria-label="GitHub Profile"
               >
                 <SvgIcon name="github-outline" title="GitHub Profile" />
               </a>
               <a
                 href="https://www.linkedin.com/in/michaelfarah-dev/"
                 className="footer-link"
+                aria-label="LinkedIn Profile"
               >
                 <SvgIcon name="linkedin" title="LinkedIn Profile" />
               </a>
               <button
                 onClick={toggleContactForm}
-                className="footer-link"
+                className="footer-link p-2"
                 title="Contact me"
+                aria-label="Contact me"
               >
                 <SvgIcon name="mail" />
               </button>

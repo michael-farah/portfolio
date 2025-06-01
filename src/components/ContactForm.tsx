@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { sendMessage } from "../utils/sendMessage";
 import SvgIcon from "./SvgIcon";
@@ -15,18 +15,21 @@ const ContactForm: React.FC<Props> = ({ isOpen, onClose }) => {
     "idle" | "sending" | "success" | "error"
   >("idle");
   const [showConfirm, setShowConfirm] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!isOpen) {
-      resetForm();
-    }
-  }, [isOpen]);
-
-  const resetForm = () => {
+  const resetForm = useCallback(() => {
     setMessage("");
     setStatus("idle");
     setShowConfirm(false);
-  };
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      dialogRef.current?.focus();
+    } else {
+      resetForm();
+    }
+  }, [isOpen, resetForm]);
 
   const handleClose = () => {
     if (message.trim() && status !== "success") {
@@ -69,14 +72,22 @@ const ContactForm: React.FC<Props> = ({ isOpen, onClose }) => {
     <div
       className="fixed inset-0 z-50 bg-black/50 md:bg-black/20 flex items-center justify-center p-4 md:absolute"
       onClick={(e) => e.target === e.currentTarget && handleClose()}
-    >
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="contact-form-title"
+      tabIndex={-1}
+      ref={dialogRef}>
       <div className="bg-white dark:bg-gray-800 rounded-lg w-full max-w-md relative shadow-xl">
         <div className="flex items-center justify-between p-4 border-b dark:border-gray-700">
-          <h2 className="text-xl font-semibold dark:text-white">Contact Me</h2>
+          <h2
+            id="contact-form-title"
+            className="text-xl font-semibold dark:text-white">
+            Contact Me
+          </h2>
           <button
             onClick={handleClose}
             className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors text-gray-500"
-          >
+            aria-label="Close contact form">
             <SvgIcon
               className="w-5 h-5 md:w-6 md:h-6"
               name="x"
@@ -97,14 +108,12 @@ const ContactForm: React.FC<Props> = ({ isOpen, onClose }) => {
                     onClose();
                     resetForm();
                   }}
-                  className="flex-1 p-3 bg-red-600 text-white rounded-lg hover:bg-red-700"
-                >
+                  className="flex-1 p-3 bg-red-600 text-white rounded-lg hover:bg-red-700">
                   Yes, close
                 </button>
                 <button
                   onClick={() => setShowConfirm(false)}
-                  className="flex-1 p-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300"
-                >
+                  className="flex-1 p-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">
                   Keep editing
                 </button>
               </div>
@@ -119,18 +128,20 @@ const ContactForm: React.FC<Props> = ({ isOpen, onClose }) => {
                   <button
                     type="button"
                     onClick={signOutUser}
-                    className="text-blue-600 hover:text-blue-700"
-                  >
+                    className="text-blue-600 hover:text-blue-700">
                     Sign Out
                   </button>
                 </div>
               )}
 
               <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label
+                  htmlFor="message-textarea"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Message
                 </label>
                 <textarea
+                  id="message-textarea"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   className="w-full p-3 border rounded-lg resize-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
@@ -141,25 +152,24 @@ const ContactForm: React.FC<Props> = ({ isOpen, onClose }) => {
 
               <button
                 type="submit"
-                className="w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
-              >
+                className="w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
                 {!user && <SvgIcon name="google" title="Sign in with Google" />}
                 {user ? "Send Message" : "Continue with Google"}
               </button>
 
-              {status === "sending" && (
-                <p className="text-blue-500 text-center">Sending message...</p>
-              )}
-              {status === "success" && (
-                <p className="text-green-500 text-center">
-                  Message sent successfully!
-                </p>
-              )}
-              {status === "error" && (
-                <p className="text-red-500 text-center">
-                  Failed to send message. Please try again.
-                </p>
-              )}
+              <div role="status" aria-live="polite" className="text-center">
+                {status === "sending" && (
+                  <p className="text-blue-500">Sending message...</p>
+                )}
+                {status === "success" && (
+                  <p className="text-green-500">Message sent successfully!</p>
+                )}
+                {status === "error" && (
+                  <p className="text-red-500">
+                    Failed to send message. Please try again.
+                  </p>
+                )}
+              </div>
             </form>
           )}
         </div>

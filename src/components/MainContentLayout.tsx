@@ -3,7 +3,7 @@ import AboutSection from "../sections/AboutSection";
 import ExperienceSection from "../sections/ExperienceSection";
 import ProjectsSection from "../sections/ProjectsSection";
 
-const MainContentLayout: React.FC<{}> = () => {
+const MainContentLayout: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen justify-between">
       <div className="flex-grow">
