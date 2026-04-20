@@ -16,7 +16,9 @@ dist-ssr
 .firebase
 .firebaserc
 firebase-admin-key.json
-data
+data/
+!src/data/
+*.tsbuildinfo
 
 # Editor directories and files
 .vscode/*
