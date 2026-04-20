@@ -1,6 +1,6 @@
 # Personal Portfolio Website - [![Firebase Hosting Status](https://img.shields.io/badge/Firebase%20Hosting-Live-brightgreen?logo=firebase&logoColor=white)](https://portfolio-mfarah.web.app/)
 
-A modern, responsive portfolio website built with React, TypeScript, and Firebase. Features a beautiful animated starry background, dark/light theme support, a seamless contact system, and a test-driven development approach for reliability and robustness.
+A modern, responsive portfolio website built with React, TypeScript, and Firebase. Features a beautiful animated starry background, a seamless contact system, and a test-driven development approach for reliability and robustness.
 
 [![React](https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff)](https://www.typescriptlang.org/)
@@ -11,8 +11,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Firebas
 
 ## Features
 
-- Interactive animated starfield background that responds to theme changes
-- Dark/light theme support with persistent user preference
+- Interactive animated starfield background
 - Fully responsive design for all screen sizes
 - Secure contact form with Google Authentication
 - Real-time data fetching with Firebase
@@ -33,9 +32,8 @@ src/
 
 ## Key Components
 
-- `StarryBackground`: Dynamic starfield animation with theme-aware colouring
+- `StarryBackground`: Dynamic starfield animation
 - `NavigationPanel`: Main navigation with social links and contact form
-- `ThemeToggle`: Theme switcher with animated icons
 - `ContactForm`: Google-authenticated contact form
 - `ProjectCard`: Display component for portfolio projects
 - `TimelineItem`: Experience timeline visualisation
