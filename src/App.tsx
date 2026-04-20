@@ -5,7 +5,7 @@ import ThemeToggle from "./components/ThemeToggle";
 
 const App: React.FC = () => {
   return (
-    <div className="md:flex bg-sky-50 text-slate-900 dark:bg-black dark:text-white">
+    <div className="md:flex bg-stone-50 text-slate-800 dark:bg-slate-950 dark:text-slate-200">
       <ThemeToggle />
       <header className="md:w-1/3 md:h-screen md:sticky md:top-0" role="banner">
         <NavigationPanel />

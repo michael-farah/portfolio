@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "../hooks/useAuth";
 import { sendMessage } from "../utils/sendMessage";
-import SvgIcon from "./SvgIcon";
+import SvgIcon from "./ui/SvgIcon";
 
 interface Props {
   isOpen: boolean;
@@ -11,9 +12,7 @@ interface Props {
 const ContactForm: React.FC<Props> = ({ isOpen, onClose }) => {
   const { user, signInWithGoogle, signOutUser } = useAuth();
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState<
-    "idle" | "sending" | "success" | "error"
-  >("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [showConfirm, setShowConfirm] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
 
@@ -26,10 +25,24 @@ const ContactForm: React.FC<Props> = ({ isOpen, onClose }) => {
   useEffect(() => {
     if (isOpen) {
       dialogRef.current?.focus();
+      document.body.style.overflow = "hidden";
     } else {
       resetForm();
+      document.body.style.overflow = "";
     }
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isOpen, resetForm]);
+
+  // Close on Escape
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) handleClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, message, status]);
 
   const handleClose = () => {
     if (message.trim() && status !== "success") {
@@ -46,9 +59,7 @@ const ContactForm: React.FC<Props> = ({ isOpen, onClose }) => {
 
     if (!user) {
       const success = await signInWithGoogle();
-      if (!success) {
-        setStatus("error");
-      }
+      if (!success) setStatus("error");
       return;
     }
 
@@ -66,115 +77,176 @@ const ContactForm: React.FC<Props> = ({ isOpen, onClose }) => {
     }
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div
-      className="fixed inset-0 z-50 bg-black/50 md:bg-black/20 flex items-center justify-center p-4 md:absolute"
-      onClick={(e) => e.target === e.currentTarget && handleClose()}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="contact-form-title"
-      tabIndex={-1}
-      ref={dialogRef}>
-      <div className="bg-white dark:bg-gray-800 rounded-lg w-full max-w-md relative shadow-xl">
-        <div className="flex items-center justify-between p-4 border-b dark:border-gray-700">
-          <h2
-            id="contact-form-title"
-            className="text-xl font-semibold dark:text-white">
-            Contact Me
-          </h2>
-          <button
-            onClick={handleClose}
-            className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors text-gray-500"
-            aria-label="Close contact form">
-            <SvgIcon
-              className="w-5 h-5 md:w-6 md:h-6"
-              name="x"
-              title="Close form"
-            />
-          </button>
-        </div>
-
-        <div className="p-6">
-          {showConfirm ? (
-            <div className="space-y-4">
-              <p className="text-gray-600 dark:text-gray-300">
-                Are you sure you want to close? Your message will be lost.
-              </p>
-              <div className="flex gap-3">
-                <button
-                  onClick={() => {
-                    onClose();
-                    resetForm();
-                  }}
-                  className="flex-1 p-3 bg-red-600 text-white rounded-lg hover:bg-red-700">
-                  Yes, close
-                </button>
-                <button
-                  onClick={() => setShowConfirm(false)}
-                  className="flex-1 p-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">
-                  Keep editing
-                </button>
-              </div>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {user && (
-                <div className="flex items-center justify-between text-sm mb-4">
-                  <span className="text-gray-600 dark:text-gray-300">
-                    Signed in as: {user.email}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={signOutUser}
-                    className="text-blue-600 hover:text-blue-700">
-                    Sign Out
-                  </button>
-                </div>
-              )}
-
-              <div className="space-y-2">
-                <label
-                  htmlFor="message-textarea"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Message
-                </label>
-                <textarea
-                  id="message-textarea"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  className="w-full p-3 border rounded-lg resize-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                  rows={4}
-                  required
-                />
-              </div>
-
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={(e) => e.target === e.currentTarget && handleClose()}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="contact-form-title"
+          tabIndex={-1}
+          ref={dialogRef}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="glass-card w-full max-w-md relative overflow-hidden"
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-slate-200/20 dark:border-slate-700/50">
+              <h2
+                id="contact-form-title"
+                className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent"
+              >
+                Get in Touch
+              </h2>
               <button
-                type="submit"
-                className="w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
-                {!user && <SvgIcon name="google" title="Sign in with Google" />}
-                {user ? "Send Message" : "Continue with Google"}
+                onClick={handleClose}
+                className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700/50 rounded-xl transition-colors text-slate-500"
+                aria-label="Close contact form"
+              >
+                <SvgIcon className="w-5 h-5" name="x" title="Close form" />
               </button>
+            </div>
 
-              <div role="status" aria-live="polite" className="text-center">
-                {status === "sending" && (
-                  <p className="text-blue-500">Sending message...</p>
+            {/* Body */}
+            <div className="p-6">
+              <AnimatePresence mode="wait">
+                {showConfirm ? (
+                  <motion.div
+                    key="confirm"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="space-y-4"
+                  >
+                    <p className="text-slate-600 dark:text-slate-300">
+                      Are you sure you want to close? Your message will be lost.
+                    </p>
+                    <div className="flex gap-3">
+                      <button
+                        onClick={() => {
+                          onClose();
+                          resetForm();
+                        }}
+                        className="flex-1 p-3 bg-red-500 text-white rounded-xl hover:bg-red-600 transition-colors font-medium"
+                      >
+                        Yes, close
+                      </button>
+                      <button
+                        onClick={() => setShowConfirm(false)}
+                        className="flex-1 p-3 bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors font-medium"
+                      >
+                        Keep editing
+                      </button>
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.form
+                    key="form"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    onSubmit={handleSubmit}
+                    className="space-y-5"
+                  >
+                    {user && (
+                      <div className="flex items-center justify-between text-sm p-3 rounded-xl bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20">
+                        <span className="text-indigo-700 dark:text-indigo-300 font-medium truncate mr-2">
+                          {user.email}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={signOutUser}
+                          className="text-indigo-600 dark:text-indigo-400 hover:underline whitespace-nowrap font-medium"
+                        >
+                          Sign Out
+                        </button>
+                      </div>
+                    )}
+
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="message-textarea"
+                        className="block text-sm font-semibold text-slate-700 dark:text-slate-300"
+                      >
+                        Message
+                      </label>
+                      <textarea
+                        id="message-textarea"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        className="w-full p-4 border border-slate-200 dark:border-slate-600/50 rounded-xl resize-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm transition-all"
+                        rows={4}
+                        placeholder="Write your message here..."
+                        required
+                      />
+                    </div>
+
+                    <motion.button
+                      type="submit"
+                      disabled={status === "sending"}
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="w-full p-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-xl font-semibold transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {status === "sending" && (
+                        <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                            fill="none"
+                          />
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                          />
+                        </svg>
+                      )}
+                      {status === "sending" ? "Sending..." : user ? "Send Message" : "Continue with Google"}
+                    </motion.button>
+
+                    <div role="status" aria-live="polite" className="text-center">
+                      {status === "success" && (
+                        <motion.p
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-emerald-600 dark:text-emerald-400 font-medium"
+                        >
+                          Message sent successfully!
+                        </motion.p>
+                      )}
+                      {status === "error" && (
+                        <motion.p
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-red-500 font-medium"
+                        >
+                          Failed to send message. Please try again.
+                        </motion.p>
+                      )}
+                    </div>
+                  </motion.form>
                 )}
-                {status === "success" && (
-                  <p className="text-green-500">Message sent successfully!</p>
-                )}
-                {status === "error" && (
-                  <p className="text-red-500">
-                    Failed to send message. Please try again.
-                  </p>
-                )}
-              </div>
-            </form>
-          )}
-        </div>
-      </div>
-    </div>
+              </AnimatePresence>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
