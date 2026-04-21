@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useCallback, useMemo } from "react";
-import { useTheme } from "../ThemeContext";
 
 interface Star {
   x: number;
@@ -15,19 +14,11 @@ const ParticleField: React.FC<{
   starCount?: number;
   maxOpacity?: number;
 }> = ({ starCount = 800, maxOpacity = 0.9 }) => {
-  const { theme } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: 0.5, y: 0.5 });
 
-  const baseColor = useMemo(
-    () => (theme === "dark" ? [255, 255, 255] : [56, 189, 248]),
-    [theme],
-  );
-
-  const accentColor = useMemo(
-    () => (theme === "dark" ? [129, 140, 248] : [99, 102, 241]),
-    [theme],
-  );
+ const baseColor = [255, 255, 255];
+ const accentColor = [129, 140, 248];
 
   const stars = useMemo<Star[]>(
     () =>
@@ -148,7 +139,7 @@ const ParticleField: React.FC<{
       window.removeEventListener("mousemove", handleMouseMove);
       cancelAnimationFrame(frame);
     };
-  }, [resizeCanvas, handleMouseMove, stars, baseColor, accentColor, maxOpacity]);
+ }, [resizeCanvas, handleMouseMove, stars, maxOpacity]);
 
   return <canvas ref={canvasRef} className="w-full h-full" />;
 };
