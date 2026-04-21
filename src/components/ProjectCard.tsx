@@ -19,8 +19,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
       id={`project-card-${index}`}
     >
       <div className="flex-1 p-6">
-        <h2 className="text-2xl font-bold mb-3 text-slate-800 dark:text-white">{title}</h2>
-        <p className="mb-4 text-slate-600 dark:text-slate-400 leading-relaxed">{description}</p>
+ <h2 className="text-2xl font-bold mb-3 text-white">{title}</h2>
+ <p className="mb-4 text-slate-400 leading-relaxed">{description}</p>
         <ul className="flex flex-wrap gap-2" aria-label="Technologies used">
           {technologies.map((tech) => (
             <li key={tech} className="tech-badge">
