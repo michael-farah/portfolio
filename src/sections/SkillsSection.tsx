@@ -30,7 +30,7 @@ const SkillsSection: React.FC = () => {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-red-500 dark:text-red-400"
+          className="text-red-400"
         >
           Error: {error.message}
         </motion.p>
@@ -46,7 +46,7 @@ const SkillsSection: React.FC = () => {
         {skills.map((category) => (
           <motion.div key={category.name} variants={staggerItem}>
             <GlassCard className="p-6 h-full" hover={false}>
-              <h3 className="text-lg font-bold mb-4 text-indigo-600 dark:text-indigo-400">
+            <h3 className="text-lg font-bold mb-4 text-indigo-400">
                 {category.name}
               </h3>
               <div className="flex flex-wrap gap-2">
