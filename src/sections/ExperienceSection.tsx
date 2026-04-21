@@ -21,7 +21,7 @@ const ExperienceSection: React.FC = () => {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-red-500 dark:text-red-400"
+          className="text-red-400"
         >
           Error: {error.message}
         </motion.p>
@@ -29,7 +29,7 @@ const ExperienceSection: React.FC = () => {
 
       <div className="relative mx-auto max-w-6xl px-4">
         {/* Vertical timeline line */}
-        <div className="absolute left-1/2 top-0 h-full w-1.5 -translate-x-1/2 bg-indigo-200/50 dark:bg-indigo-500/20 rounded-full" />
+        <div className="absolute left-1/2 top-0 h-full w-1.5 -translate-x-1/2 bg-indigo-500/20 rounded-full" />
 
         <motion.div
           variants={staggerContainer}
