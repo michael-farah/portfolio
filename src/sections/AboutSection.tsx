@@ -19,7 +19,7 @@ const AboutSection: React.FC = () => {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-red-500 dark:text-red-400"
+          className="text-red-400"
         >
           Error: {error.message}
         </motion.p>
@@ -27,7 +27,7 @@ const AboutSection: React.FC = () => {
 
       {data?.about && (
         <SectionReveal delay={0.2}>
-          <p className="text-lg sm:text-xl leading-relaxed text-slate-600 dark:text-slate-400 max-w-2xl">
+          <p className="text-lg sm:text-xl leading-relaxed text-slate-400 max-w-2xl">
             {data.about}
           </p>
         </SectionReveal>
