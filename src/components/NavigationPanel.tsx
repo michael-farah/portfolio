@@ -21,19 +21,19 @@ const NavigationPanel: React.FC = () => {
   return (
     <>
       <div className="w-full md:h-screen md:sticky md:top-0 flex flex-col justify-between overflow-hidden">
-          <div className="relative h-full flex flex-col bg-gradient-to-b from-sky-400 via-blue-400 to-indigo-400 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950">
+ <div className="relative h-full flex flex-col bg-gradient-to-b from-slate-950 via-slate-900 to-indigo-950">
           {/* Particle background */}
-          <div className="absolute inset-0 opacity-60 dark:opacity-100">
+ <div className="absolute inset-0 opacity-100">
             <ParticleField />
           </div>
 
           {/* Shooting stars (dark mode only) */}
-          <div className="absolute inset-0 pointer-events-none hidden dark:block">
+ <div className="absolute inset-0 pointer-events-none block">
             <ShootingStar />
           </div>
 
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/20 dark:to-black/20" />
+ <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
 
           <div className="relative z-10 flex flex-col h-full text-white">
             {/* Header */}
