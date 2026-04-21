@@ -27,7 +27,7 @@ const ProjectsSection: React.FC = () => {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-red-500 dark:text-red-400"
+          className="text-red-400"
         >
           Error: {error.message}
         </motion.p>
