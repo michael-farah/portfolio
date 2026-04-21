@@ -18,7 +18,7 @@ const ContributingSection: React.FC = () => {
       {forks.length > 0 && (
         <div className="mb-12">
           <SectionReveal>
-            <h3 className="text-xl font-semibold text-slate-700 dark:text-slate-300 mb-6">
+          <h3 className="text-xl font-semibold text-slate-300 mb-6">
               Active Forks
             </h3>
           </SectionReveal>
@@ -39,17 +39,17 @@ const ContributingSection: React.FC = () => {
                     className="block p-6"
                   >
                     <div className="flex items-start justify-between mb-2">
-                      <h3 className="text-lg font-bold text-slate-800 dark:text-white">
+              <h3 className="text-lg font-bold text-white">
                         {contribution.repo}
                       </h3>
                       {contribution.prCount && (
-                        <span className="px-2 py-0.5 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300">
+                <span className="px-2 py-0.5 text-xs font-semibold rounded-full bg-emerald-500/15 text-emerald-300">
                           {contribution.prCount} merged PR
                           {contribution.prCount > 1 ? "s" : ""}
                         </span>
                       )}
                     </div>
-                    <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
+              <p className="text-sm text-slate-400 mb-4">
                       {contribution.description}
                     </p>
                     <div className="flex flex-wrap gap-2">
@@ -70,7 +70,7 @@ const ContributingSection: React.FC = () => {
       {prs.length > 0 && (
         <div>
           <SectionReveal>
-            <h3 className="text-xl font-semibold text-slate-700 dark:text-slate-300 mb-6">
+          <h3 className="text-xl font-semibold text-slate-300 mb-6">
               Merged PRs
             </h3>
           </SectionReveal>
@@ -91,17 +91,17 @@ const ContributingSection: React.FC = () => {
                     className="block p-6"
                   >
                     <div className="flex items-start justify-between mb-2">
-                      <h3 className="text-lg font-bold text-slate-800 dark:text-white">
+              <h3 className="text-lg font-bold text-white">
                         {contribution.repo}
                       </h3>
                       {contribution.prCount && (
-                        <span className="px-2 py-0.5 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300">
+                <span className="px-2 py-0.5 text-xs font-semibold rounded-full bg-emerald-500/15 text-emerald-300">
                           {contribution.prCount} merged PR
                           {contribution.prCount > 1 ? "s" : ""}
                         </span>
                       )}
                     </div>
-                    <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
+              <p className="text-sm text-slate-400 mb-4">
                       {contribution.description}
                     </p>
                     <div className="flex flex-wrap gap-2">
