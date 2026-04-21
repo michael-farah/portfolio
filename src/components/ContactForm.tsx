@@ -101,18 +101,17 @@ const ContactForm: React.FC<Props> = ({ isOpen, onClose }) => {
             className="glass-card w-full max-w-md relative overflow-hidden"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-slate-200/20 dark:border-slate-700/50">
+ <div className="flex items-center justify-between p-6 border-b border-slate-700/50">
               <h2
                 id="contact-form-title"
-                className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent"
-              >
+ className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
                 Get in Touch
               </h2>
               <button
                 onClick={handleClose}
-                className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700/50 rounded-xl transition-colors text-slate-500"
-                aria-label="Close contact form"
-              >
+ className="p-2 hover:bg-slate-700/50 rounded-xl transition-colors text-slate-500"
+          aria-label="Close contact form"
+          >
                 <SvgIcon className="w-5 h-5" name="x" title="Close form" />
               </button>
             </div>
@@ -128,7 +127,7 @@ const ContactForm: React.FC<Props> = ({ isOpen, onClose }) => {
                     exit={{ opacity: 0, y: -10 }}
                     className="space-y-4"
                   >
-                    <p className="text-slate-600 dark:text-slate-300">
+ <p className="text-slate-300">
                       Are you sure you want to close? Your message will be lost.
                     </p>
                     <div className="flex gap-3">
@@ -143,8 +142,7 @@ const ContactForm: React.FC<Props> = ({ isOpen, onClose }) => {
                       </button>
                       <button
                         onClick={() => setShowConfirm(false)}
-                        className="flex-1 p-3 bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors font-medium"
-                      >
+ className="flex-1 p-3 bg-slate-700 text-slate-200 rounded-xl hover:bg-slate-600 transition-colors font-medium">
                         Keep editing
                       </button>
                     </div>
@@ -159,15 +157,14 @@ const ContactForm: React.FC<Props> = ({ isOpen, onClose }) => {
                     className="space-y-5"
                   >
                     {user && (
-                      <div className="flex items-center justify-between text-sm p-3 rounded-xl bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20">
-                        <span className="text-indigo-700 dark:text-indigo-300 font-medium truncate mr-2">
+ <div className="flex items-center justify-between text-sm p-3 rounded-xl bg-indigo-500/10 border border-indigo-500/20">
+ <span className="text-indigo-300 font-medium truncate mr-2">
                           {user.email}
                         </span>
                         <button
                           type="button"
                           onClick={signOutUser}
-                          className="text-indigo-600 dark:text-indigo-400 hover:underline whitespace-nowrap font-medium"
-                        >
+ className="text-indigo-400 hover:underline whitespace-nowrap font-medium">
                           Sign Out
                         </button>
                       </div>
@@ -176,16 +173,15 @@ const ContactForm: React.FC<Props> = ({ isOpen, onClose }) => {
                     <div className="space-y-2">
                       <label
                         htmlFor="message-textarea"
-                        className="block text-sm font-semibold text-slate-700 dark:text-slate-300"
-                      >
+ className="block text-sm font-semibold text-slate-300">
                         Message
                       </label>
                       <textarea
                         id="message-textarea"
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
-                        className="w-full p-4 border border-slate-200 dark:border-slate-600/50 rounded-xl resize-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm transition-all"
-                        rows={4}
+ className="w-full p-4 border border-slate-600/50 rounded-xl resize-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 bg-slate-800/50 backdrop-blur-sm transition-all"
+          rows={4}
                         placeholder="Write your message here..."
                         required
                       />
@@ -224,8 +220,7 @@ const ContactForm: React.FC<Props> = ({ isOpen, onClose }) => {
                         <motion.p
                           initial={{ opacity: 0, y: 5 }}
                           animate={{ opacity: 1, y: 0 }}
-                          className="text-emerald-600 dark:text-emerald-400 font-medium"
-                        >
+ className="text-emerald-400 font-medium">
                           Message sent successfully!
                         </motion.p>
                       )}
