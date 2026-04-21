@@ -28,11 +28,11 @@ export class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         this.props.fallback || (
-          <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950 p-8">
+ <div className="min-h-screen flex items-center justify-center bg-slate-950 p-8">
             <div className="glass-card p-12 text-center max-w-md">
               <div className="text-6xl mb-6">🔧</div>
               <h1 className="text-2xl font-bold mb-4">Something went wrong</h1>
-              <p className="text-slate-600 dark:text-slate-400 mb-6">
+ <p className="text-slate-400 mb-6">
                 An unexpected error occurred. Please try refreshing the page.
               </p>
               <button
