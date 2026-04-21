@@ -4,7 +4,7 @@
 
 @layer base {
   * {
-    @apply selection:bg-sky-500/30 selection:text-sky-900 dark:selection:bg-indigo-400/30 dark:selection:text-white;
+    @apply selection:bg-indigo-400/30 selection:text-white;
   }
 
   html {
@@ -13,22 +13,22 @@
   }
 
   body {
-    @apply font-sans text-slate-800 dark:text-slate-200 overflow-x-hidden;
+  @apply font-sans text-slate-200 overflow-x-hidden;
   }
 
   ::selection {
-    @apply bg-sky-500/20;
+  @apply bg-indigo-400/20;
   }
 }
 
 @layer components {
   /* ─── Glass Card ─── */
   .glass-card {
-    @apply relative overflow-hidden rounded-2xl border border-slate-200/60 dark:border-white/10 bg-white/80 dark:bg-white/5 backdrop-blur-xl shadow-sm transition-all duration-500 ease-out;
+    @apply relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-sm transition-all duration-500 ease-out;
   }
 
   .glass-card:hover {
-  @apply border-sky-300/50 dark:border-indigo-500/30 shadow-xl shadow-sky-500/10 dark:shadow-indigo-500/10 -translate-y-1;
+    @apply border-indigo-500/30 shadow-xl shadow-indigo-500/10 -translate-y-1;
   }
 
   /* ─── Card ─── */
@@ -37,7 +37,7 @@
   }
 
   .card-footer {
-    @apply bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-indigo-600 dark:to-purple-700 p-5 flex flex-col sm:flex-row items-center sm:justify-between gap-4 sm:gap-0 rounded-b-2xl;
+    @apply bg-gradient-to-r from-indigo-600 to-purple-700 p-5 flex flex-col sm:flex-row items-center sm:justify-between gap-4 sm:gap-0 rounded-b-2xl;
   }
 
   .link-button {
@@ -46,20 +46,20 @@
 
   /* ─── Tech Badge ─── */
   .tech-badge {
-    @apply px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-sky-700 dark:text-indigo-300 bg-sky-50 dark:bg-indigo-500/15 border border-sky-200/50 dark:border-indigo-500/20 rounded-full transition-all duration-300 hover:bg-sky-100/80 dark:hover:bg-indigo-500/25 hover:scale-105;
+    @apply px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-indigo-300 bg-indigo-500/15 border border-indigo-500/20 rounded-full transition-all duration-300 hover:bg-indigo-500/25 hover:scale-105;
   }
 
   /* ─── Navigation ─── */
   .navigation-link {
-    @apply relative flex items-center text-lg font-medium space-x-3 text-slate-600 dark:text-slate-400 hover:text-sky-600 dark:hover:text-indigo-400 transition-all duration-300;
+    @apply relative flex items-center text-lg font-medium space-x-3 text-slate-400 hover:text-indigo-400 transition-all duration-300;
   }
 
   .navigation-link.active {
-    @apply text-sky-600 dark:text-indigo-400;
+    @apply text-indigo-400;
   }
 
   .nav-indicator {
-    @apply absolute -left-4 w-1 h-0 rounded-full bg-sky-500 dark:bg-indigo-400 transition-all duration-300;
+    @apply absolute -left-4 w-1 h-0 rounded-full bg-indigo-400 transition-all duration-300;
   }
 
   .navigation-link.active .nav-indicator,
@@ -67,19 +67,15 @@
     @apply h-full;
   }
 
-  /* ─── Theme Toggle ─── */
-  .theme-toggle {
-    @apply fixed top-6 right-6 z-50 rounded-2xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 text-slate-700 dark:text-slate-200 p-3 shadow-lg transition-all duration-500 ease-out hover:shadow-xl hover:scale-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-indigo-500/50;
-  }
 
   /* ─── Footer Link ─── */
   .footer-link {
-    @apply inline-flex items-center space-x-2 text-slate-600 dark:text-slate-400 hover:text-sky-600 dark:hover:text-indigo-400 transition-all duration-300 hover:scale-110 active:scale-95;
+    @apply inline-flex items-center space-x-2 text-slate-400 hover:text-indigo-400 transition-all duration-300 hover:scale-110 active:scale-95;
   }
 
   /* ─── Section Title ─── */
   .section-title {
-    @apply text-4xl sm:text-5xl font-black bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 dark:from-indigo-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent mb-10;
+    @apply text-4xl sm:text-5xl font-black bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent mb-10;
   }
 
   /* ─── Glow effects ─── */
@@ -106,16 +102,16 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-slate-300 dark:bg-slate-700 rounded-full;
+    @apply bg-slate-700 rounded-full;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-slate-400 dark:bg-slate-600;
+    @apply bg-slate-600;
   }
 
   /* ─── Skeleton Loading ─── */
   .skeleton {
-    @apply animate-pulse bg-slate-200 dark:bg-slate-700 rounded-lg;
+    @apply animate-pulse bg-slate-700 rounded-lg;
   }
 }
 
